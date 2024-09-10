@@ -13,16 +13,8 @@ namespace PROG7312POE
     public partial class Form1 : Form
     {
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
-        private static extern IntPtr CreateRoundRectRgn
-            (
-            int nLeftRect,
-            int nTopRect,
-            int nRightRect,
-            int nBottomRect,
-            int nWidthEllipse,
-            int nHeightEllipse
-            );
         public Form1()
         {
             InitializeComponent();
@@ -40,8 +32,12 @@ namespace PROG7312POE
         private void btnReportIssues_Click(object sender, EventArgs e)
         {
             pnlNav.Height = btnReportIssues.Height;
-            pnlNav.Top =btnReportIssues.Top;
+            pnlNav.Top = btnReportIssues.Top;
             btnReportIssues.BackColor = Color.FromArgb(46, 51, 73);
+
+            // Redirect to the ReportIssues form
+            ReportIssues reportIssuesForm = new ReportIssues();
+            reportIssuesForm.Show();
         }
 
         private void btnAnnouncements_Click(object sender, EventArgs e)
